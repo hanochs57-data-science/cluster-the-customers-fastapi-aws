@@ -45,7 +45,7 @@ def home(request: Request):
 def predict(
     request: Request,
     Age: float = Form(...),
-    Gender: float = Form(...),
+    Gender: str = Form(...),
     AnnualIncome: float = Form(...),
     SpendingScore: float = Form(...)
 ):
