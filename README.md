@@ -1,129 +1,74 @@
-#  Mall Customer Segmentation API
+# Mall Customer Segmentation API
 
-A production-ready Machine Learning application that segments mall customers into meaningful groups using the **K-Means Clustering** algorithm. The project provides a REST API built with **FastAPI**, containerized with **Docker**, version-controlled using **Git/GitHub**, and designed for cloud deployment on **AWS**.
+## Overview
 
----
+Mall Customer Segmentation API is an end-to-end Machine Learning deployment project that predicts the customer segment using the K-Means clustering algorithm.
 
-##  Project Overview
-
-Understanding customer behavior is essential for personalized marketing and improved customer engagement. This project leverages **unsupervised machine learning** to group customers with similar purchasing patterns.
-
-Given customer information such as:
-
-- Age
-- Gender
-- Annual Income (k$)
-- Spending Score (1-100)
-
-the model predicts the most appropriate customer segment, enabling businesses to tailor marketing strategies effectively.
+The application is built with FastAPI, containerized using Docker, deployed on AWS EC2, and managed using Git & GitHub.
 
 ---
 
-##  Features
+## Features
 
-- K-Means Clustering for customer segmentation
-- REST API using FastAPI
-- Interactive Swagger UI
-- Dockerized application
-- Git & GitHub version control
-- Cloud deployment ready
-- Label Encoding
-- Feature Scaling
-- Model persistence using Joblib
-- Clean HTML/CSS frontend
-- Modular project architecture
+- Customer Segmentation using K-Means Clustering
+- FastAPI REST API
+- Interactive HTML/CSS frontend
+- Swagger API documentation
+- Dockerized deployment
+- AWS EC2 deployment
+- Git & GitHub integration
+- Production-ready project structure
 
 ---
 
-##  Customer Segments
+## Customer Segments
 
-The model classifies customers into one of the following categories:
-
-| Cluster | Segment |
-|----------|-----------------------------|
-| 1 | High-Value Loyalists |
-| 2 | Budget Seekers |
-| 3 | Window Shoppers |
-| 4 | Churn Risks |
-| 5 | Tech Innovators |
-| 6 | Passive Consumers |
-| 7 | Brand Advocates |
-| 8 | Urban Professionals |
-| 9 | Suburban Families |
-|10 | Digital Nomads |
-|11 | Seasonal Buyers |
-|12 | Impulse Shoppers |
-|13 | Discounts-Only Hunters |
-|14 | Recent Onboarders |
+- High-Value Loyalists
+- Budget Seekers
+- Window Shoppers
+- Churn Risks
+- Tech Innovators
+- Passive Consumers
+- Brand Advocates
+- Urban Professionals
+- Suburban Families
+- Digital Nomads
+- Seasonal Buyers
+- Impulse Shoppers
+- Discounts-Only Hunters
+- Recent Onboarders
 
 ---
 
-##  Dataset
+## Dataset
 
-**Dataset:** Mall Customer Segmentation Dataset
+Dataset:
+Mall Customer Segmentation Dataset
 
-Source:
-https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python
-
-Features used:
+Features
 
 - Gender
 - Age
-- Annual Income (k$)
-- Spending Score (1-100)
+- Annual Income
+- Spending Score
 
 ---
 
-##  Machine Learning Workflow
-
-```
-Data Collection
-       │
-       ▼
-Data Cleaning
-       │
-       ▼
-Label Encoding
-       │
-       ▼
-Feature Scaling
-       │
-       ▼
-K-Means Clustering
-       │
-       ▼
-Model Training
-       │
-       ▼
-Model Serialization (Joblib)
-       │
-       ▼
-FastAPI REST API
-       │
-       ▼
-Docker Container
-       │
-       ▼
-Cloud Deployment
-```
-
----
-
-##  Tech Stack
+## Technology Stack
 
 ### Machine Learning
 
 - Python
+- Scikit-learn
 - Pandas
 - NumPy
-- Scikit-learn
 - Joblib
 
 ### Backend
 
 - FastAPI
-- Uvicorn
 - REST API
+- Uvicorn
 
 ### Frontend
 
@@ -138,54 +83,42 @@ Cloud Deployment
 
 ### Cloud
 
-- AWS (Deployment Ready)
+- AWS EC2
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
 Mall-Customer-Segmentation/
 
-│
-├── app.py
-├── train_model.py
-├── requirements.txt
-├── Dockerfile
-├── .dockerignore
-├── .gitignore
-│
-├── model/
-│   ├── model.pkl
-│   ├── scaler.pkl
-│   └── label_encoder.pkl
-│
-├── static/
+│── app.py
+│── train_model.py
+│── model.pkl
+│── requirements.txt
+│── Dockerfile
+│── .dockerignore
+│── .gitignore
 │
 ├── templates/
-│   └── index.html
+│      index.html
+│
+├── static/
+│      style.css
 │
 ├── dataset/
-│
-├── notebooks/
 │
 └── README.md
 ```
 
 ---
 
-## 🚀 Installation
+## Installation
 
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/Mall-Customer-Segmentation.git
-```
-
-Move into the project
-
-```bash
-cd Mall-Customer-Segmentation
+git clone https://github.com/<your-username>/<repo>.git
 ```
 
 Install dependencies
@@ -194,32 +127,53 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
-Run the application
+Run locally
 
 ```bash
 uvicorn app:app --reload
 ```
 
+Visit
 
----
-
-##  Docker
-
-Build Docker Image
-
-```bash
-docker build -t mall-customer-api .
+```
+http://127.0.0.1:8000
 ```
 
-Run Container
+Swagger
 
-```bash
-docker run -p 8000:8000 mall-customer-api
+```
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
-##  REST API
+## Docker
+
+Build
+
+```bash
+docker build -t mall-customer-segmentation .
+```
+
+Run
+
+```bash
+docker run -d -p 8000:8000 mall-customer-segmentation
+```
+
+---
+
+## AWS Deployment
+
+The application is deployed on an AWS EC2 Ubuntu instance using Docker.
+
+Deployment workflow:
+
+GitHub → Docker → AWS EC2
+
+---
+
+## API Endpoint
 
 ### Home
 
@@ -227,60 +181,29 @@ docker run -p 8000:8000 mall-customer-api
 GET /
 ```
 
-Loads the prediction interface.
-
 ### Predict
 
 ```
 POST /predict
 ```
 
-Returns the predicted customer segment.
+---
+
+## Future Improvements
+
+- GitHub Actions CI/CD
+- Apache Airflow integration
+- MLflow experiment tracking
+- Amazon ECR & ECS deployment
+- Kubernetes deployment
+- Prometheus & Grafana monitoring
 
 ---
 
-##  Application Preview
+## Author
 
-Add screenshots here:
+Hanoch Shetty
 
-- Home Page
-- Prediction Result
-- Swagger UI
+B.Sc. Information Technology Student
 
----
-
-##  Future Enhancements
-
-- GitHub Actions CI/CD pipeline
-- Apache Airflow for automated retraining
-- AWS ECS deployment
-- Model monitoring with MLflow
-- Prometheus & Grafana integration
-- Prediction confidence and cluster visualization
-- Real-time analytics dashboard
-
----
-
-##  Contributing
-
-Contributions, suggestions, and improvements are welcome. Feel free to fork the repository and submit a pull request.
-
----
-
-##  License
-
-This project is licensed under the MIT License.
-
----
-
-##  Author
-
-Developed as an end-to-end Machine Learning Deployment project demonstrating:
-
-- Machine Learning
-- FastAPI
-- REST APIs
-- Docker
-- Git & GitHub
-- Cloud Deployment
-- Production-ready project architecture
+Interested in Machine Learning, AI Engineering, Data Science, and MLOps.
