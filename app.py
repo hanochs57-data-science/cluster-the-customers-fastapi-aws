@@ -3,7 +3,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import joblib
-from numpy import round
 
 app = FastAPI()
 
@@ -11,6 +10,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
+# Load trained model
 model = joblib.load("model.pkl")
 
 options = [
@@ -30,6 +30,7 @@ options = [
     "Recent Onboarders",
 ]
 
+
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse(
@@ -41,30 +42,31 @@ def home(request: Request):
         }
     )
 
+
 @app.post("/predict", response_class=HTMLResponse)
 def predict(
     request: Request,
-    Age: float = Form(...),
     Gender: float = Form(...),
+    Age: float = Form(...),
     AnnualIncome: float = Form(...),
     SpendingScore: float = Form(...)
 ):
+
     prediction = model.predict([[
-        Age,
         Gender,
+        Age,
         AnnualIncome,
         SpendingScore
     ]])
-   
-    prediction = model.predict([[Gender, Age, AnnualIncome, SpendingScore]])
+
     predicted_class = int(prediction[0])
     predicted_option = options[predicted_class]
 
     return templates.TemplateResponse(
-    request=request,
-    name="index.html",
-    context={
-        "request": request,
-        "prediction": predicted_option
-    }
-)
+        request=request,
+        name="index.html",
+        context={
+            "request": request,
+            "prediction": predicted_option
+        }
+    )
