@@ -13,7 +13,6 @@ The application is built with FastAPI, containerized using Docker, deployed on A
 - Customer Segmentation using K-Means Clustering
 - FastAPI REST API
 - Interactive HTML/CSS frontend
-- Swagger API documentation
 - Dockerized deployment
 - AWS EC2 deployment
 - Git & GitHub integration
