@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mall Customer Segmentation</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Mall Customers Clustering</h1>
+
+        <p>
+            Predict the category of the Customer.
+        </p>
+
+    </div>
+
+    <form action="/predict" method="post">
+
+        <div class="grid">
+
+           
+            <div class="input-group">
+
+                <label>Gender</label>
+
+                <select name="Gender">
+
+                    <option value="0">Male</option>
+
+                    <option value="1">Female</option>
+
+                </select>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Age</label>
+
+                <input
+                    type="number"
+                    name="Age"
+                    step="1"
+                    placeholder="29">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Annual Income</label>
+
+                <input
+                    type="number"
+                    name="AnnualIncome"
+                    step="0.1"
+                    placeholder="75.50">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Spending Score</label>
+
+                <input
+                    type="number"
+                    name="SpendingScore"
+                    placeholder="50">
+
+            </div>
+
+        <button type="submit">
+
+            Predict Category
+
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h3>Prediction</h3>
+
+        <h2>{{ prediction }}</h2>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
