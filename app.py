@@ -45,7 +45,7 @@ def home(request: Request):
 def predict(
     request: Request,
     Age: float = Form(...),
-    Gender: str = Form(...),
+    Gender: float = Form(...),
     AnnualIncome: float = Form(...),
     SpendingScore: float = Form(...)
 ):
@@ -55,22 +55,16 @@ def predict(
         AnnualIncome,
         SpendingScore
     ]])
-    predict_probability = model.predict_proba([[
-        Age,
-        Gender,
-        AnnualIncome,
-        SpendingScore
-    ]])
+   
+    prediction = model.predict([[Gender, Age, AnnualIncome, SpendingScore]])
     predicted_class = int(prediction[0])
     predicted_option = options[predicted_class]
-    probability = predict_probability[0]
 
     return templates.TemplateResponse(
-        request=request,
-        name="index.html",
-        context={
-            "request": request,
-            "prediction": predicted_option,
-            "probability": probability
-        }
-    )
+    request=request,
+    name="index.html",
+    context={
+        "request": request,
+        "prediction": predicted_option
+    }
+)
